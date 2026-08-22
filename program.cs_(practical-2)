@@ -1,0 +1,80 @@
+﻿using System;
+namespace Lab_2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee emp;
+            Console.WriteLine("1. Full Time Employee");
+            Console.WriteLine("2. Part Time Employee");
+            Console.Write("Enter Choice: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            if (choice == 1)
+            {
+                emp = new FullTimeEmployee();
+            }
+            else if (choice == 2)
+            {
+                emp = new PartTimeEmployee();
+            }
+
+            else
+            {
+                Console.WriteLine("Invalid Choice!");
+                return;
+            }
+            emp.AcceptDetails();
+            emp.DisplayDetails();
+            emp.CalculateSalary();
+            Console.ReadKey();
+        }
+    }
+    public class Employee
+    {
+        public int Id;
+        public string Name;
+        public int Salary;
+        public Employee()
+        {
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine("Enter Employee Details");
+            Console.WriteLine("-------------------------------------");
+        }
+        public void AcceptDetails()
+        {
+            Console.Write("Enter Employee Id : ");
+            Id = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Name : ");
+            Name = Console.ReadLine();
+            Console.Write("Enter Salary : ");
+            Salary = Convert.ToInt32(Console.ReadLine());
+        }
+        public void DisplayDetails()
+        {
+            Console.WriteLine("\n-------- Employee Details --------");
+            Console.WriteLine("Id     : " + Id);
+            Console.WriteLine("Name   : " + Name);
+            Console.WriteLine("Salary : " + Salary);
+        }
+        public virtual void CalculateSalary()
+        {
+            Console.WriteLine("Employee Salary : " + Salary);
+        }
+    }
+    public class FullTimeEmployee : Employee
+    {
+        public override void CalculateSalary()
+        {
+            Console.WriteLine("Full Time Employee Salary : " + Salary);
+        }
+    }
+
+    public class PartTimeEmployee : Employee
+    {
+        public override void CalculateSalary()
+        {
+            Console.WriteLine("Part Time Employee Salary : " + Salary);
+        }
+    }
+}
