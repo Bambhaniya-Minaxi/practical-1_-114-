@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace pra_1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Student s1 = new Student();
+            s1.AcceptDetails();
+            s1.CheckScholarshipEligibility();
+            s1.DisplayDetails();
+            Console.ReadKey();
+        }
+    }
+
+
+
+    public class Student
+    {
+        public int AdmissionNo;
+        public string Name;
+        public string Course;
+        public int Semster;
+        public string Branch;
+        private double fees;
+        private Boolean IsscholarshipEligible;
+        private double netfee;
+
+        public Student()
+        {
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine("Enter some  basic details of students");
+            Console.WriteLine("-------------------------------------");
+
+            Console.WriteLine(" An object is created");
+        }
+        public void AcceptDetails()
+        {
+            Console.Write("Enter AdmissionNo :");
+            AdmissionNo = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Name        :");
+            Name = Console.ReadLine();
+            Console.Write("Enter Course      :");
+            Course = Console.ReadLine();
+            Console.Write("Enter Semster     :");
+            Semster = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Branch      :");
+            Branch = Console.ReadLine();
+            Console.Write("Enter Fees        :");
+            fees = Convert.ToDouble(Console.ReadLine());
+        }
+        public void CheckScholarshipEligibility()
+        {
+            if (fees >= 50000)
+            {
+                IsscholarshipEligible = true;
+                double concession = fees * 0.10;
+                netfee = fees - concession;
+                Console.WriteLine("\nScholarship Eligible!");
+                Console.WriteLine("10% concession applied: " + concession);
+                Console.WriteLine("Fees after concession: " + fees);
+            }
+            else
+            {
+                IsscholarshipEligible = false;
+                Console.WriteLine("\nNot eligible for scholarship.");
+                netfee = fees;
+            }
+        }
+
+
+        public void DisplayDetails()
+        {
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("\n ------------ Student Details --------");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("Admission No:  " + AdmissionNo);
+            Console.WriteLine("Name        : " + Name);
+            Console.WriteLine("Course      : " + Course);
+            Console.WriteLine("Semester    : " + Semster);
+            Console.WriteLine("Branch      : " + Branch);
+            Console.WriteLine("Fees        : " + fees);
+            Console.WriteLine("ScholarshipEligible:" + IsscholarshipEligible);
+            Console.WriteLine("netfee      :" + netfee);
+        }
+    }
+}
